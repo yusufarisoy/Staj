@@ -1,0 +1,92 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Schema Namespace="nesneProjeModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+  <EntityType Name="Article">
+    <Key>
+      <PropertyRef Name="ID" />
+    </Key>
+    <Property Name="ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="Title" Type="String" MaxLength="200" FixedLength="false" Unicode="false" />
+    <Property Name="TitleUrl" Type="String" MaxLength="300" FixedLength="false" Unicode="false" />
+    <Property Name="ContentSummary" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
+    <Property Name="VisitCheck" Type="Boolean" Nullable="false" />
+    <Property Name="FullContent" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
+    <Property Name="ImageSrc" Type="String" MaxLength="300" FixedLength="false" Unicode="false" />
+    <NavigationProperty Name="ArticleCategoryRelations" Relationship="Self.FK_ArticleCategoryRelation_Article" FromRole="Article" ToRole="ArticleCategoryRelation" />
+  </EntityType>
+  <EntityType Name="ArticleCategory">
+    <Key>
+      <PropertyRef Name="ID" />
+    </Key>
+    <Property Name="ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="CategoryName" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
+    <NavigationProperty Name="ArticleCategoryRelations" Relationship="Self.FK_ArticleCategoryRelation_ArticleCategory" FromRole="ArticleCategory" ToRole="ArticleCategoryRelation" />
+  </EntityType>
+  <EntityType Name="ArticleCategoryRelation">
+    <Key>
+      <PropertyRef Name="ID" />
+    </Key>
+    <Property Name="ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="ArticleID" Type="Int32" Nullable="false" />
+    <Property Name="CategoryID" Type="Int32" Nullable="false" />
+    <NavigationProperty Name="Article" Relationship="Self.FK_ArticleCategoryRelation_Article" FromRole="ArticleCategoryRelation" ToRole="Article" />
+    <NavigationProperty Name="ArticleCategory" Relationship="Self.FK_ArticleCategoryRelation_ArticleCategory" FromRole="ArticleCategoryRelation" ToRole="ArticleCategory" />
+  </EntityType>
+  <EntityType Name="PageURL">
+    <Key>
+      <PropertyRef Name="ID" />
+    </Key>
+    <Property Name="ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="LinkFormat" Type="String" MaxLength="100" FixedLength="false" Unicode="false" Nullable="false" />
+    <Property Name="LastPage" Type="Int32" Nullable="false" />
+    <Property Name="TotalPage" Type="Int32" Nullable="false" />
+  </EntityType>
+  <EntityType Name="sysdiagram">
+    <Key>
+      <PropertyRef Name="diagram_id" />
+    </Key>
+    <Property Name="name" Type="String" MaxLength="128" FixedLength="false" Unicode="true" Nullable="false" />
+    <Property Name="principal_id" Type="Int32" Nullable="false" />
+    <Property Name="diagram_id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="version" Type="Int32" />
+    <Property Name="definition" Type="Binary" MaxLength="Max" FixedLength="false" />
+  </EntityType>
+  <Association Name="FK_ArticleCategoryRelation_Article">
+    <End Role="Article" Type="Self.Article" Multiplicity="1" />
+    <End Role="ArticleCategoryRelation" Type="Self.ArticleCategoryRelation" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Article">
+        <PropertyRef Name="ID" />
+      </Principal>
+      <Dependent Role="ArticleCategoryRelation">
+        <PropertyRef Name="ArticleID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_ArticleCategoryRelation_ArticleCategory">
+    <End Role="ArticleCategory" Type="Self.ArticleCategory" Multiplicity="1" />
+    <End Role="ArticleCategoryRelation" Type="Self.ArticleCategoryRelation" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="ArticleCategory">
+        <PropertyRef Name="ID" />
+      </Principal>
+      <Dependent Role="ArticleCategoryRelation">
+        <PropertyRef Name="CategoryID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <EntityContainer Name="nesneProjeEntities1" annotation:LazyLoadingEnabled="true">
+    <EntitySet Name="Articles" EntityType="Self.Article" />
+    <EntitySet Name="ArticleCategories" EntityType="Self.ArticleCategory" />
+    <EntitySet Name="ArticleCategoryRelations" EntityType="Self.ArticleCategoryRelation" />
+    <EntitySet Name="PageURLs" EntityType="Self.PageURL" />
+    <EntitySet Name="sysdiagrams" EntityType="Self.sysdiagram" />
+    <AssociationSet Name="FK_ArticleCategoryRelation_Article" Association="Self.FK_ArticleCategoryRelation_Article">
+      <End Role="Article" EntitySet="Articles" />
+      <End Role="ArticleCategoryRelation" EntitySet="ArticleCategoryRelations" />
+    </AssociationSet>
+    <AssociationSet Name="FK_ArticleCategoryRelation_ArticleCategory" Association="Self.FK_ArticleCategoryRelation_ArticleCategory">
+      <End Role="ArticleCategory" EntitySet="ArticleCategories" />
+      <End Role="ArticleCategoryRelation" EntitySet="ArticleCategoryRelations" />
+    </AssociationSet>
+  </EntityContainer>
+</Schema>

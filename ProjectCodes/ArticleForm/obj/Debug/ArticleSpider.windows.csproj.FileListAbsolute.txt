@@ -1,0 +1,17 @@
+C:\Users\ygkmn\Desktop\ConsoleApp1\ArticleForm\bin\Debug\ArticleForm.exe.config
+C:\Users\ygkmn\Desktop\ConsoleApp1\ArticleForm\bin\Debug\ArticleForm.exe
+C:\Users\ygkmn\Desktop\ConsoleApp1\ArticleForm\bin\Debug\ArticleForm.pdb
+C:\Users\ygkmn\Desktop\ConsoleApp1\ArticleForm\bin\Debug\EntityFramework.dll
+C:\Users\ygkmn\Desktop\ConsoleApp1\ArticleForm\bin\Debug\EntityFramework.SqlServer.dll
+C:\Users\ygkmn\Desktop\ConsoleApp1\ArticleForm\bin\Debug\EntityFramework.xml
+C:\Users\ygkmn\Desktop\ConsoleApp1\ArticleForm\bin\Debug\EntityFramework.SqlServer.xml
+C:\Users\ygkmn\Desktop\ConsoleApp1\ArticleForm\obj\Debug\ArticleSpider.windows.csprojAssemblyReference.cache
+C:\Users\ygkmn\Desktop\ConsoleApp1\ArticleForm\obj\Debug\ArticleForm.Form1.resources
+C:\Users\ygkmn\Desktop\ConsoleApp1\ArticleForm\obj\Debug\ArticleForm.Properties.Resources.resources
+C:\Users\ygkmn\Desktop\ConsoleApp1\ArticleForm\obj\Debug\ArticleSpider.windows.csproj.GenerateResource.cache
+C:\Users\ygkmn\Desktop\ConsoleApp1\ArticleForm\obj\Debug\ArticleSpider.windows.csproj.CoreCompileInputs.cache
+C:\Users\ygkmn\Desktop\ConsoleApp1\ArticleForm\obj\Debug\ArticleSpider.windows.csproj.CopyComplete
+C:\Users\ygkmn\Desktop\ConsoleApp1\ArticleForm\obj\Debug\ArticleForm.exe
+C:\Users\ygkmn\Desktop\ConsoleApp1\ArticleForm\obj\Debug\ArticleForm.pdb
+C:\Users\ygkmn\Desktop\ConsoleApp1\ArticleForm\bin\Debug\itextsharp.dll
+C:\Users\ygkmn\Desktop\ConsoleApp1\ArticleForm\bin\Debug\itextsharp.xml

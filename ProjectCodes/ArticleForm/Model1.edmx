@@ -1,0 +1,266 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+  <!-- EF Runtime content -->
+  <edmx:Runtime>
+    <!-- SSDL content -->
+    <edmx:StorageModels>
+    <Schema Namespace="nesneProjeModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+        <EntityType Name="Article">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Title" Type="varchar" MaxLength="200" />
+          <Property Name="TitleUrl" Type="varchar" MaxLength="300" />
+          <Property Name="ContentSummary" Type="varchar(max)" />
+          <Property Name="VisitCheck" Type="bit" Nullable="false" />
+          <Property Name="FullContent" Type="varchar(max)" />
+          <Property Name="ImageSrc" Type="varchar" MaxLength="300" />
+        </EntityType>
+        <EntityType Name="ArticleCategory">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="CategoryName" Type="varchar" MaxLength="100" />
+        </EntityType>
+        <EntityType Name="ArticleCategoryRelation">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="ArticleID" Type="int" Nullable="false" />
+          <Property Name="CategoryID" Type="int" Nullable="false" />
+        </EntityType>
+        <EntityType Name="PageURL">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="LinkFormat" Type="varchar" MaxLength="100" Nullable="false" />
+          <Property Name="LastPage" Type="int" Nullable="false" />
+          <Property Name="TotalPage" Type="int" Nullable="false" />
+        </EntityType>
+        <EntityType Name="sysdiagrams">
+          <Key>
+            <PropertyRef Name="diagram_id" />
+          </Key>
+          <Property Name="name" Type="nvarchar" MaxLength="128" Nullable="false" />
+          <Property Name="principal_id" Type="int" Nullable="false" />
+          <Property Name="diagram_id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="version" Type="int" />
+          <Property Name="definition" Type="varbinary(max)" />
+        </EntityType>
+        <Association Name="FK_ArticleCategoryRelation_Article">
+          <End Role="Article" Type="Self.Article" Multiplicity="1" />
+          <End Role="ArticleCategoryRelation" Type="Self.ArticleCategoryRelation" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Article">
+              <PropertyRef Name="ID" />
+            </Principal>
+            <Dependent Role="ArticleCategoryRelation">
+              <PropertyRef Name="ArticleID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_ArticleCategoryRelation_ArticleCategory">
+          <End Role="ArticleCategory" Type="Self.ArticleCategory" Multiplicity="1" />
+          <End Role="ArticleCategoryRelation" Type="Self.ArticleCategoryRelation" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="ArticleCategory">
+              <PropertyRef Name="ID" />
+            </Principal>
+            <Dependent Role="ArticleCategoryRelation">
+              <PropertyRef Name="CategoryID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <EntityContainer Name="nesneProjeModelStoreContainer">
+          <EntitySet Name="Article" EntityType="Self.Article" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="ArticleCategory" EntityType="Self.ArticleCategory" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="ArticleCategoryRelation" EntityType="Self.ArticleCategoryRelation" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="PageURL" EntityType="Self.PageURL" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="sysdiagrams" EntityType="Self.sysdiagrams" Schema="dbo" store:Type="Tables" />
+          <AssociationSet Name="FK_ArticleCategoryRelation_Article" Association="Self.FK_ArticleCategoryRelation_Article">
+            <End Role="Article" EntitySet="Article" />
+            <End Role="ArticleCategoryRelation" EntitySet="ArticleCategoryRelation" />
+          </AssociationSet>
+          <AssociationSet Name="FK_ArticleCategoryRelation_ArticleCategory" Association="Self.FK_ArticleCategoryRelation_ArticleCategory">
+            <End Role="ArticleCategory" EntitySet="ArticleCategory" />
+            <End Role="ArticleCategoryRelation" EntitySet="ArticleCategoryRelation" />
+          </AssociationSet>
+        </EntityContainer>
+      </Schema></edmx:StorageModels>
+    <!-- CSDL content -->
+    <edmx:ConceptualModels>
+      <Schema Namespace="nesneProjeModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+        <EntityContainer Name="nesneProjeEntities" annotation:LazyLoadingEnabled="true">
+          <EntitySet Name="Articles" EntityType="nesneProjeModel.Article" />
+          <EntitySet Name="ArticleCategories" EntityType="nesneProjeModel.ArticleCategory" />
+          <EntitySet Name="ArticleCategoryRelations" EntityType="nesneProjeModel.ArticleCategoryRelation" />
+          <EntitySet Name="PageURLs" EntityType="nesneProjeModel.PageURL" />
+          <EntitySet Name="sysdiagrams" EntityType="nesneProjeModel.sysdiagram" />
+          <AssociationSet Name="FK_ArticleCategoryRelation_Article" Association="nesneProjeModel.FK_ArticleCategoryRelation_Article">
+            <End Role="Article" EntitySet="Articles" />
+            <End Role="ArticleCategoryRelation" EntitySet="ArticleCategoryRelations" />
+          </AssociationSet>
+          <AssociationSet Name="FK_ArticleCategoryRelation_ArticleCategory" Association="nesneProjeModel.FK_ArticleCategoryRelation_ArticleCategory">
+            <End Role="ArticleCategory" EntitySet="ArticleCategories" />
+            <End Role="ArticleCategoryRelation" EntitySet="ArticleCategoryRelations" />
+          </AssociationSet>
+        </EntityContainer>
+        <EntityType Name="Article">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Title" Type="String" MaxLength="200" FixedLength="false" Unicode="false" />
+          <Property Name="TitleUrl" Type="String" MaxLength="300" FixedLength="false" Unicode="false" />
+          <Property Name="ContentSummary" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
+          <Property Name="VisitCheck" Type="Boolean" Nullable="false" />
+          <Property Name="FullContent" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
+          <Property Name="ImageSrc" Type="String" MaxLength="300" FixedLength="false" Unicode="false" />
+          <NavigationProperty Name="ArticleCategoryRelations" Relationship="nesneProjeModel.FK_ArticleCategoryRelation_Article" FromRole="Article" ToRole="ArticleCategoryRelation" />
+        </EntityType>
+        <EntityType Name="ArticleCategory">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="CategoryName" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
+          <NavigationProperty Name="ArticleCategoryRelations" Relationship="nesneProjeModel.FK_ArticleCategoryRelation_ArticleCategory" FromRole="ArticleCategory" ToRole="ArticleCategoryRelation" />
+        </EntityType>
+        <EntityType Name="ArticleCategoryRelation">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="ArticleID" Type="Int32" Nullable="false" />
+          <Property Name="CategoryID" Type="Int32" Nullable="false" />
+          <NavigationProperty Name="Article" Relationship="nesneProjeModel.FK_ArticleCategoryRelation_Article" FromRole="ArticleCategoryRelation" ToRole="Article" />
+          <NavigationProperty Name="ArticleCategory" Relationship="nesneProjeModel.FK_ArticleCategoryRelation_ArticleCategory" FromRole="ArticleCategoryRelation" ToRole="ArticleCategory" />
+        </EntityType>
+        <EntityType Name="PageURL">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="LinkFormat" Type="String" Nullable="false" MaxLength="100" FixedLength="false" Unicode="false" />
+          <Property Name="LastPage" Type="Int32" Nullable="false" />
+          <Property Name="TotalPage" Type="Int32" Nullable="false" />
+        </EntityType>
+        <EntityType Name="sysdiagram">
+          <Key>
+            <PropertyRef Name="diagram_id" />
+          </Key>
+          <Property Name="name" Type="String" Nullable="false" MaxLength="128" FixedLength="false" Unicode="true" />
+          <Property Name="principal_id" Type="Int32" Nullable="false" />
+          <Property Name="diagram_id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="version" Type="Int32" />
+          <Property Name="definition" Type="Binary" MaxLength="Max" FixedLength="false" />
+        </EntityType>
+        <Association Name="FK_ArticleCategoryRelation_Article">
+          <End Type="nesneProjeModel.Article" Role="Article" Multiplicity="1" />
+          <End Type="nesneProjeModel.ArticleCategoryRelation" Role="ArticleCategoryRelation" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Article">
+              <PropertyRef Name="ID" />
+            </Principal>
+            <Dependent Role="ArticleCategoryRelation">
+              <PropertyRef Name="ArticleID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_ArticleCategoryRelation_ArticleCategory">
+          <End Type="nesneProjeModel.ArticleCategory" Role="ArticleCategory" Multiplicity="1" />
+          <End Type="nesneProjeModel.ArticleCategoryRelation" Role="ArticleCategoryRelation" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="ArticleCategory">
+              <PropertyRef Name="ID" />
+            </Principal>
+            <Dependent Role="ArticleCategoryRelation">
+              <PropertyRef Name="CategoryID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        </Schema>
+    </edmx:ConceptualModels>
+    <!-- C-S mapping content -->
+    <edmx:Mappings>
+      <Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
+        <EntityContainerMapping StorageEntityContainer="nesneProjeModelStoreContainer" CdmEntityContainer="nesneProjeEntities">
+          <EntitySetMapping Name="Articles">
+            <EntityTypeMapping TypeName="nesneProjeModel.Article">
+              <MappingFragment StoreEntitySet="Article">
+                <ScalarProperty Name="ImageSrc" ColumnName="ImageSrc" />
+                <ScalarProperty Name="FullContent" ColumnName="FullContent" />
+                <ScalarProperty Name="VisitCheck" ColumnName="VisitCheck" />
+                <ScalarProperty Name="ContentSummary" ColumnName="ContentSummary" />
+                <ScalarProperty Name="TitleUrl" ColumnName="TitleUrl" />
+                <ScalarProperty Name="Title" ColumnName="Title" />
+                <ScalarProperty Name="ID" ColumnName="ID" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="ArticleCategories">
+            <EntityTypeMapping TypeName="nesneProjeModel.ArticleCategory">
+              <MappingFragment StoreEntitySet="ArticleCategory">
+                <ScalarProperty Name="CategoryName" ColumnName="CategoryName" />
+                <ScalarProperty Name="ID" ColumnName="ID" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="ArticleCategoryRelations">
+            <EntityTypeMapping TypeName="nesneProjeModel.ArticleCategoryRelation">
+              <MappingFragment StoreEntitySet="ArticleCategoryRelation">
+                <ScalarProperty Name="CategoryID" ColumnName="CategoryID" />
+                <ScalarProperty Name="ArticleID" ColumnName="ArticleID" />
+                <ScalarProperty Name="ID" ColumnName="ID" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="PageURLs">
+            <EntityTypeMapping TypeName="nesneProjeModel.PageURL">
+              <MappingFragment StoreEntitySet="PageURL">
+                <ScalarProperty Name="TotalPage" ColumnName="TotalPage" />
+                <ScalarProperty Name="LastPage" ColumnName="LastPage" />
+                <ScalarProperty Name="LinkFormat" ColumnName="LinkFormat" />
+                <ScalarProperty Name="ID" ColumnName="ID" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="sysdiagrams">
+            <EntityTypeMapping TypeName="nesneProjeModel.sysdiagram">
+              <MappingFragment StoreEntitySet="sysdiagrams">
+                <ScalarProperty Name="definition" ColumnName="definition" />
+                <ScalarProperty Name="version" ColumnName="version" />
+                <ScalarProperty Name="diagram_id" ColumnName="diagram_id" />
+                <ScalarProperty Name="principal_id" ColumnName="principal_id" />
+                <ScalarProperty Name="name" ColumnName="name" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+        </EntityContainerMapping>
+      </Mapping>
+    </edmx:Mappings>
+  </edmx:Runtime>
+  <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <Connection>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="MetadataArtifactProcessing" Value="EmbedInOutputAssembly" />
+      </DesignerInfoPropertySet>
+    </Connection>
+    <Options>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="ValidateOnBuild" Value="true" />
+        <DesignerProperty Name="EnablePluralization" Value="true" />
+        <DesignerProperty Name="IncludeForeignKeysInModel" Value="true" />
+        <DesignerProperty Name="UseLegacyProvider" Value="false" />
+        <DesignerProperty Name="CodeGenerationStrategy" Value="None" />
+      </DesignerInfoPropertySet>
+    </Options>
+    <!-- Diagram content (shape and connector positions) -->
+    <Diagrams></Diagrams>
+  </Designer>
+</edmx:Edmx>

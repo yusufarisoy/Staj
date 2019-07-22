@@ -1,0 +1,88 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Schema Namespace="nesneProjeModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+  <EntityType Name="Article">
+    <Key>
+      <PropertyRef Name="ID" />
+    </Key>
+    <Property Name="ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="Title" Type="varchar" MaxLength="200" />
+    <Property Name="TitleUrl" Type="varchar" MaxLength="300" />
+    <Property Name="ContentSummary" Type="varchar(max)" />
+    <Property Name="VisitCheck" Type="bit" Nullable="false" />
+    <Property Name="FullContent" Type="varchar(max)" />
+    <Property Name="ImageSrc" Type="varchar" MaxLength="300" />
+  </EntityType>
+  <EntityType Name="ArticleCategory">
+    <Key>
+      <PropertyRef Name="ID" />
+    </Key>
+    <Property Name="ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="CategoryName" Type="varchar" MaxLength="100" />
+  </EntityType>
+  <EntityType Name="ArticleCategoryRelation">
+    <Key>
+      <PropertyRef Name="ID" />
+    </Key>
+    <Property Name="ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="ArticleID" Type="int" Nullable="false" />
+    <Property Name="CategoryID" Type="int" Nullable="false" />
+  </EntityType>
+  <EntityType Name="PageURL">
+    <Key>
+      <PropertyRef Name="ID" />
+    </Key>
+    <Property Name="ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="LinkFormat" Type="varchar" MaxLength="100" Nullable="false" />
+    <Property Name="LastPage" Type="int" Nullable="false" />
+    <Property Name="TotalPage" Type="int" Nullable="false" />
+  </EntityType>
+  <EntityType Name="sysdiagrams">
+    <Key>
+      <PropertyRef Name="diagram_id" />
+    </Key>
+    <Property Name="name" Type="nvarchar" MaxLength="128" Nullable="false" />
+    <Property Name="principal_id" Type="int" Nullable="false" />
+    <Property Name="diagram_id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="version" Type="int" />
+    <Property Name="definition" Type="varbinary(max)" />
+  </EntityType>
+  <Association Name="FK_ArticleCategoryRelation_Article">
+    <End Role="Article" Type="Self.Article" Multiplicity="1" />
+    <End Role="ArticleCategoryRelation" Type="Self.ArticleCategoryRelation" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Article">
+        <PropertyRef Name="ID" />
+      </Principal>
+      <Dependent Role="ArticleCategoryRelation">
+        <PropertyRef Name="ArticleID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_ArticleCategoryRelation_ArticleCategory">
+    <End Role="ArticleCategory" Type="Self.ArticleCategory" Multiplicity="1" />
+    <End Role="ArticleCategoryRelation" Type="Self.ArticleCategoryRelation" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="ArticleCategory">
+        <PropertyRef Name="ID" />
+      </Principal>
+      <Dependent Role="ArticleCategoryRelation">
+        <PropertyRef Name="CategoryID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <EntityContainer Name="nesneProjeModelStoreContainer">
+    <EntitySet Name="Article" EntityType="Self.Article" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="ArticleCategory" EntityType="Self.ArticleCategory" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="ArticleCategoryRelation" EntityType="Self.ArticleCategoryRelation" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="PageURL" EntityType="Self.PageURL" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="sysdiagrams" EntityType="Self.sysdiagrams" Schema="dbo" store:Type="Tables" />
+    <AssociationSet Name="FK_ArticleCategoryRelation_Article" Association="Self.FK_ArticleCategoryRelation_Article">
+      <End Role="Article" EntitySet="Article" />
+      <End Role="ArticleCategoryRelation" EntitySet="ArticleCategoryRelation" />
+    </AssociationSet>
+    <AssociationSet Name="FK_ArticleCategoryRelation_ArticleCategory" Association="Self.FK_ArticleCategoryRelation_ArticleCategory">
+      <End Role="ArticleCategory" EntitySet="ArticleCategory" />
+      <End Role="ArticleCategoryRelation" EntitySet="ArticleCategoryRelation" />
+    </AssociationSet>
+  </EntityContainer>
+</Schema>
