@@ -18,13 +18,13 @@ Staj dönemi boyunca geliştirdiğim projem ve kodlarım
 ## Windows Application Geliştirmeleri
 
 - EF Core ile makale ve kategorilerin gösterimi windows form üzerinde geliştirildi
-  - [EF Core](https://www.nuget.org/packages/Microsoft.EntityFrameworkCore/)
+  - [EF Core NuGet](https://www.nuget.org/packages/Microsoft.EntityFrameworkCore/)
 - iTextSharp ile istenilen kategorinin PDF dosyası oluşturuldu
     
 
 ## Asp.Net Core MVC Geliştirmeleri
     
-- [Asp.Net Core](https://docs.microsoft.com/en-us/aspnet/core/?view=aspnetcore-2.2)
 - Model View Controller uygulama tasarımında EF ile Web Sitesi geliştirildi
 - Bu web sitesinde Kategori gösterimi, makale gösterimi ve makale detay gösterimi yapıldı
 - Makale gösterimlerinde sayfalama algoritması geliştirildi ve MVC component kullanıldı
+  - [Asp.Net Core](https://docs.microsoft.com/en-us/aspnet/core/?view=aspnetcore-2.2)
