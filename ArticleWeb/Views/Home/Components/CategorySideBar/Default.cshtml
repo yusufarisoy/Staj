@@ -1,0 +1,10 @@
+﻿@model  ArticleSpiderWeb.Models.Home.CategorySideBar.DefaultModel
+
+    <div class="col">
+        <div class="list-group">
+            @foreach (ArticleSpiderWeb.Models.Home.CategoryItem category in Model.Categories)
+            {
+                <a class="list-group-item @(category.IsSelected ? "active" : " list-group-item-action")" href="/makaleler/@category.URL/@category.ID/sayfa-1">@category.Name</a>
+            }
+        </div>
+    </div>

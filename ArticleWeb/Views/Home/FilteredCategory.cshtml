@@ -1,0 +1,56 @@
+﻿@model ArticleSpiderWeb.Models.Home.IndexModel
+@{
+    Layout = "/Views/Shared/_Layout.cshtml";
+
+}
+
+    <div class="row">
+
+        @await Component.InvokeAsync("CategorySideBar")
+
+        <div class="col-8 border-left-0 border-right pb-3">
+            @foreach (ArticleSpiderWeb.Models.Home.ArticleItem article in Model.Articles)
+            {
+                <div class="row">
+                    <div class="col-12">
+                        <h3>@article.Title</h3>
+                        <p>@Html.Raw(article.Summary)</p>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-12 text-right">
+                        <a class="btn btn-outline-dark my-3" href="/Home/ArticleDetail/@article.ID"><i class="fas fa-angle-double-right"></i></a>
+                        <hr />
+                    </div>
+                </div>
+            }
+        </div>
+    </div>
+    <div class="row">
+        <div class="col"></div>
+        <div class="col-8">
+            <div class="col-4"></div>
+            <div class="col-6">
+                <div class="input-group">
+                    <div class="input-group-prepend">
+                        @if (Model.HasPreviousPage)
+                        {
+                            <a class="btn btn-outline-dark" href="@Model.PreviousURL">Previous</a>
+                        }
+                    </div>
+                    <select class="custom-select mr-2 ml-2" onchange="top.location.href=this.value">
+                        @foreach(ArticleSpiderWeb.Models.Home.ButtonItem button in Model.Buttons)
+                        {
+                            <option value="@button.URL" @(button.IsSelected ? "selected" : "")>@button.Text</option>
+                        }
+                    </select>
+                    <div class="input-group-append">
+                       @if (Model.HasNextPage)
+                       {
+                           <a class="btn btn-outline-dark" href="@Model.NextPageURL">Next</a>
+                       }
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>

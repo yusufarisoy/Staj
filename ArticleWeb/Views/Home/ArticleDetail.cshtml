@@ -1,0 +1,22 @@
+﻿@model ArticleSpiderWeb.Models.Home.IndexModel
+@{
+    Layout = "/Views/Shared/_Layout.cshtml";
+    //ArticleSpiderWeb.Models.Home.ArticleItem articles1 = Model.ToList().First();
+}
+
+    <div>
+        <div class="row">
+            @await Component.InvokeAsync("CategorySideBar", new { selectedCategoryID = Model.SelectedCategoryID })
+
+            <div class="col-8 border-left border-right pb-3">
+                @foreach (ArticleSpiderWeb.Models.Home.ArticleItem article in Model.Articles)
+                {
+                    <div class="col pt-2">
+                        <h3 class="my-2">@article.Title</h3>
+                        <img src="@article.ImageSrc" class="img-fluid" />
+                        <p class="my-2">@article.Content</p>
+                    </div>
+                }
+            </div>
+        </div>
+    </div>
