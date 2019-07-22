@@ -7,18 +7,18 @@ Staj dönemi boyunca geliştirdiğim projem ve kodlarım
 - Dosya işlemleri kullanıldı
 - Multithread için C# Paralel kullanıldı
 - HTML Parse için HTMLAgility Pack Nuget kullanıldı
- - [HTMLAgility Pack](https://html-agility-pack.net/)
+  - [HTMLAgility Pack](https://html-agility-pack.net/)
 - Database için MS SQL kullanıldı
 - Data katmanı için Entity Framework kullanıldı
- - [Entity Framework NuGet](https://www.nuget.org/packages/EntityFramework/)
+  - [Entity Framework NuGet](https://www.nuget.org/packages/EntityFramework/)
 - Makaleleri PDF haline getirmek için iTextSharp Nuget'i kullanıldı
- - [iTextSharp NuGet](https://www.nuget.org/packages/iTextSharp/5.5.13.1)
+  - [iTextSharp NuGet](https://www.nuget.org/packages/iTextSharp/5.5.13.1)
     
 
 ## Windows Application Geliştirmeleri
 
 - EF Core ile makale ve kategorilerin gösterimi windows form üzerinde geliştirildi
- - [EF Core](https://www.nuget.org/packages/Microsoft.EntityFrameworkCore/)
+  - [EF Core](https://www.nuget.org/packages/Microsoft.EntityFrameworkCore/)
 - iTextSharp ile istenilen kategorinin PDF dosyası oluşturuldu
     
 
