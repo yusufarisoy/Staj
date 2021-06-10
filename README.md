@@ -1,5 +1,4 @@
-# Staj
-Staj dönemi boyunca geliştirdiğim projem ve kodlarım
+# Article Automation Project
 
 
 ## Console Application Geliştirmeleri
